@@ -1,15 +1,25 @@
 import { headers } from "next/headers";
 
 export default function Home() {
-  const host = headers().get("host") || "This Site";
+  let host = headers().get("host") || "unknown";
+
+  if (host.startsWith("www.")) {
+    host = host.slice(4);
+  }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center bg-black text-center">
-      <h1 className="text-4xl font-bold text-white">{host} Domain For Sale</h1>
-      <p className="mt-4 text-2xl text-gray-300">Asking Price: 1,000 USD</p>
-      <p className="mt-4 text-xl text-gray-300">
-        Contact: okunevachesley1975@smitosemail.com
-      </p>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-black px-4 text-center">
+      <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+        {host} Domain For Sale
+      </h1>
+      <ul>
+        <li className="mt-4 text-xl text-gray-300 sm:text-2xl">
+          Asking Price: 1,500 USD
+        </li>
+        <li className="mt-4 text-xl text-gray-300 sm:text-2xl">
+          Contact: contact@headspaceandtiming.com
+        </li>
+      </ul>
     </div>
   );
 }
